@@ -1,11 +1,18 @@
 .container {
 	position: fixed;
 	left: 0;
+	z-index: 10;
 	width: 616px;
 	height: 100%;
 	overflow: scroll;
 	transform: translate(-616px);
 	transition: transform 0.5s ease;
+}
+
+.overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 9;
 }
 
 .container_open {
@@ -23,6 +30,14 @@
 	padding: 50px 31px;
 	background-color: #ffffff;
 	border-right: 1px solid #000000;
+}
+
+.title {
+	margin-bottom: 32px;
+}
+
+.field {
+	margin-bottom: 32px;
 }
 
 .bottomContainer {

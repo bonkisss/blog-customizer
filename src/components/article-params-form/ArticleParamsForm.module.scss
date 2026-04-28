@@ -9,6 +9,12 @@
 	transition: transform 0.5s ease;
 }
 
+.overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 9;
+}
+
 .container_open {
 	transform: translate(0);
 }

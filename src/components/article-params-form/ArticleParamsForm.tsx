@@ -41,9 +41,8 @@ export const ArticleParamsForm = ({ initialState, onApply }: Props) => {
 	// Сброс: откатываем к дефолтным параметрам и сразу применяем их
 	const handleReset = (e?: React.SyntheticEvent) => {
 		e?.preventDefault();
-		const snap = defaultArticleState;
-		setFormState(snap);
-		onApply(snap);
+		setFormState(defaultArticleState);
+		onApply(defaultArticleState);
 	};
 
 	const handleChangeField =
@@ -64,7 +63,7 @@ export const ArticleParamsForm = ({ initialState, onApply }: Props) => {
 					onSubmit={handleSubmit}
 					onReset={handleReset}>
 					<div className={styles.title}>
-						<Text as='h2' size={38} weight={800} uppercase dynamicLite>
+						<Text as='h2' size={38} weight={800} uppercase>
 							Задайте параметры
 						</Text>
 					</div>

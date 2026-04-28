@@ -12,21 +12,13 @@ type ArrowButtonProps = {
 };
 
 export const ArrowButton = ({ isOpen, onClick }: ArrowButtonProps) => {
-	const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-		if (event.key === 'Enter' || event.key === ' ') {
-			event.preventDefault();
-			onClick();
-		}
-	};
-
 	return (
 		<div
 			role='button'
 			aria-label='Открыть/Закрыть форму параметров статьи'
 			tabIndex={0}
 			className={clsx(styles.container, { [styles.container_open]: isOpen })}
-			onClick={onClick}
-			onKeyDown={handleKeyDown}>
+			onClick={onClick}>
 			<img
 				src={arrow}
 				alt='иконка стрелочки'

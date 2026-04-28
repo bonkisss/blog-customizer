@@ -1,4 +1,4 @@
-import React, { useRef, useState, CSSProperties } from 'react';
+import React, { useState, CSSProperties } from 'react';
 import clsx from 'clsx';
 
 import { Article } from './components/article/Article';
@@ -11,39 +11,10 @@ import {
 import './styles/index.scss';
 import styles from './styles/index.module.scss';
 
-const deepClone = <T,>(obj: T): T => JSON.parse(JSON.stringify(obj));
-
 export const App = () => {
 	// Применённое состояние статьи
-	const [articleState, setArticleState] = useState<ArticleStateType>(
-		deepClone(defaultArticleState)
-	);
-
-	// Сохраняем начальное состояние страницы (при первой загрузке)
-	const initialPageStateRef = useRef<ArticleStateType>(
-		deepClone(defaultArticleState)
-	);
-
-	// Открыт ли сайдбар
-	const [isOpen, setIsOpen] = useState<boolean>(false);
-
-	const handleToggle = () => setIsOpen((prev) => !prev);
-	const handleClose = () => setIsOpen(false);
-
-	// Apply: применить переданные из формы значения к странице
-	const handleApply = (newState: ArticleStateType) => {
-		setArticleState(deepClone(newState));
-		// автоматически закрывать панель:
-		// setIsOpen(false);
-	};
-
-	// Reset: применить переданное состояние к странице (форме)
-	// (форма вызывает onReset(initialPageState) чтобы откатиться к начальному состоянию страницы)
-	const handleReset = (stateToApply: ArticleStateType) => {
-		setArticleState(deepClone(stateToApply));
-		// закрыть панель:
-		// setIsOpen(false);
-	};
+	const [articleState, setArticleState] =
+		useState<ArticleStateType>(defaultArticleState);
 
 	return (
 		<main
@@ -58,13 +29,8 @@ export const App = () => {
 				} as CSSProperties
 			}>
 			<ArticleParamsForm
-				isOpen={isOpen}
-				onToggle={handleToggle}
-				onClose={handleClose}
 				initialState={articleState} // текущее применённое состояние (для инициализации формы)
-				initialPageState={initialPageStateRef.current} // начальные значения при загрузке страницы для "Сбросить"
-				onApply={handleApply}
-				onReset={handleReset}
+				onApply={setArticleState}
 			/>
 			<Article />
 		</main>
